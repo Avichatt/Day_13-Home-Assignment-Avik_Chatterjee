@@ -5,8 +5,32 @@ import numpy as np
 
 """
 Documented prompt sent to AI:
-"Write a Python function that takes a Pandas DataFrame and generates an automated data quality report including: shape, dtypes, missing values percentage, duplicate rows, unique value counts per column, and basic stats. Return the report as a dict and also print a formatted summary."
-"""
+You are an expert Python developer specializing in data engineering and data quality tooling. I need you to write a production-quality Python function that analyzes a Pandas DataFrame and returns a comprehensive data quality report.
+
+**Function requirements:**
+
+- Accepts a Pandas DataFrame as input
+- Returns a structured `dict` containing all report components
+- Prints a clean, human-readable formatted summary to stdout
+
+**The report must include:**
+
+- **Shape** — row and column counts
+- **Data types** — dtype per column
+- **Missing values** — count and percentage per column (only surface columns with nulls, but include a global summary)
+- **Duplicate rows** — total count and percentage of total rows
+- **Unique value counts** — per column, including percentage of total rows
+- **Basic descriptive stats** — for numeric columns (mean, median, std, min, max, quartiles) and for non-numeric columns (top value, frequency, count of unique values)
+
+**Code quality expectations:**
+
+- Type-hint the function signature
+- Handle edge cases gracefully: empty DataFrames, all-null columns, DataFrames with no numeric or no categorical columns
+- The printed summary should be readable without needing to inspect the returned dict — use clear section headers, alignment, and separators
+- The returned dict should be serialization-friendly (no raw NumPy types — convert to native Python `int`, `float`, `str` where appropriate)
+- Include a concise docstring
+
+Provide the complete function with a short usage example at the end demonstrating it on a sample DataFrame that includes mixed dtypes, some missing values, and at least one duplicate row."""
 def generate_data_quality_report(df: pd.DataFrame) -> dict:
     print("=======================================")
     print("      DATA QUALITY AUTOMATED REPORT    ")
